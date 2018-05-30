@@ -1,2 +1,3 @@
 # tornado_homework
-first commit
+This is my first project of my homework.
+I hope i can do it very well.
