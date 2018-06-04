@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% block title %}explore page{% end %}
+{% block content %}
+    {% for i in range(1, 4)%}
+    <img src="{{ static_url("images/{}.jpg".format(i)) }}" alt="" width="300px" height="200px"/>
+{% end %}
+{% end %}
