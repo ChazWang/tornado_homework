@@ -1,3 +1,5 @@
+import os
+
 import tornado.web
 import tornado.httpserver
 import tornado.ioloop
@@ -5,6 +7,7 @@ import tornado.options
 from tornado.options import options, define
 
 from handlers import main
+
 define('port', default=8000, help='run port', type=int)
 
 class Application(tornado.web.Application):
@@ -13,6 +16,7 @@ class Application(tornado.web.Application):
             ('/', main.IndexHandler),
             ('/explore', main.ExploreHandler),
             ('/post/(?P<post_id>[0-9]+)', main.PostHandler),
+            ('/upload', main.UploadHandler),
         ]
         settings = dict(
             template_path='templates',

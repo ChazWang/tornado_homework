@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block title %}upload page{% end %}
+{% block content %}
+    <form action="/upload" enctype="multipart/form-data" method="post">
+        <input type="file" name="newimg">
+        <input type="submit" value="上传">
+    </form>
+{% end %}
