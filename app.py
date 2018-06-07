@@ -6,8 +6,7 @@ import tornado.ioloop
 import tornado.options
 from tornado.options import options, define
 
-from handlers import main
-
+from handlers import main, auth
 define('port', default=8000, help='run port', type=int)
 
 class Application(tornado.web.Application):
@@ -17,11 +16,30 @@ class Application(tornado.web.Application):
             ('/explore', main.ExploreHandler),
             ('/post/(?P<post_id>[0-9]+)', main.PostHandler),
             ('/upload', main.UploadHandler),
+            ('/login', auth.LoginHandler),
+            ('/logout', auth.LogOutHandler),
+            ('/register', auth.RegisterHandler),
         ]
         settings = dict(
             template_path='templates',
             static_path='static',
             debug=True,
+            login_url='/login',
+            cookie_secret='fsf45875fdSDFaD58',
+            pycket={
+                'engine': 'redis',
+                'storage': {
+                    'host': '192.168.0.129',
+                    # 'password': '',
+                    'port': '6379',
+                    'db_sessions': 5,
+                    'db_notifications': 11,
+                    'max_connections': 2 ** 30,
+                },
+                'cookies': {
+                    'expires_days': 30,
+                },
+            }
         )
         super(Application, self).__init__(handlers, **settings)
         """

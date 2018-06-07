@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}register page{% end %}
+{% block content %}
+<div class="">
+    <form action="/register" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            Username
+            <input autofocus="" class="form-control" id="id_username" maxlength="150" name="username" type="text">
+        </div>
+        <div class="form-group">
+            Email
+            <input autofocus="" class="form-control" id="id_email"  name="email" type="text">
+        </div>
+        <div class="form-group">
+            Password
+            <input autofocus="" class="form-control" id="id_password1"  name="password1" type="password">
+        </div>
+        <div class="form-group">
+            Password confirmation
+            <input autofocus="" class="form-control" id="id_password2" name="password2" type="password">
+        </div>
+        <button class="btn btn-default">注册</button>
+        <div>
+            已有账号，请<a href="/login">登陆</a>
+        </div>
+    </form>
+</div>
+{% end %}

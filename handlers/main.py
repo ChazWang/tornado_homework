@@ -1,10 +1,16 @@
 import tornado.web
 import glob, os
+from pycket.session import SessionMixin
 from PIL import Image
 
 from utils import photo
-class IndexHandler(tornado.web.RequestHandler):
+class AuthBaseHandler(tornado.web.RequestHandler, SessionMixin):
+    def get_current_user(self):
+        return self.session.get('tornado_user_info')
+
+class IndexHandler(AuthBaseHandler):
     '''图片分享首页'''
+    @tornado.web.authenticated
     def get(self, *args, **kwargs):
         images = photo.get_images('./static/uploads')
         self.render('index.html', images=images)
