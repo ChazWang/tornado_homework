@@ -1,4 +1,3 @@
-import tornado.web
 from utils.account import authentication, register, login
 from .main import AuthBaseHandler
 
@@ -8,6 +7,7 @@ class LoginHandler(AuthBaseHandler):
     def post(self, *args, **kwargs):
         username = self.get_argument('username', None)
         password = self.get_argument('password', None)
+        print(username, password)
         if authentication(username, password):
             self.session.set('tornado_user_info', username)
             login(username)
@@ -16,8 +16,9 @@ class LoginHandler(AuthBaseHandler):
             self.write('input error,login failed')
 class LogOutHandler(AuthBaseHandler):
     def get(self, *args, **kwargs):
-        self.session.set('tornado_user_info', '')
+        self.session.delete('tornado_user_info')
         self.redirect('/login')
+
 class RegisterHandler(AuthBaseHandler):
     def get(self, *args, **kwargs):
         self.render('register.html', msg='')

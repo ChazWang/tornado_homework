@@ -28,3 +28,8 @@ def uploads(username, images_url, thumbs_url):
 def get_post_url(username):
     posts = Post.get_url(username)
     return posts
+def get_post_id(id):
+    return Post.get_id(id)
+
+def get_post_all():
+    return Post.get_all()

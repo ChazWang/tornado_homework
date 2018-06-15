@@ -1,3 +1,7 @@
 .idea
 
 static/uploads
+*.pyc
+*.pyc
+handlers/__pycache__/main.cpython-35.pyc
+handlers/__pycache__/main.cpython-35.pyc

@@ -65,8 +65,15 @@ class Post(Base):
     @classmethod
     def get_url(cls, username):
         user = session.query(User).filter_by(name=username).first()
-        posts = session.query(Post).filter_by(user=user)
+        posts = session.query(Post).order_by(Post.create_time.desc()).filter_by(user=user)
         return posts
+    @classmethod
+    def get_id(cls, id):
+        return session.query(Post).filter_by(id=id)
+
+    @classmethod
+    def get_all(cls):
+        return session.query(Post).order_by(Post.create_time.desc()).all()
 if __name__ == '__main__':
     Base.metadata.create_all()
 

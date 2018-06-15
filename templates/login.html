@@ -1,22 +1,25 @@
 {% extends 'base.html' %}
+<link href="{{ static_url('css/signin.css') }}" rel="stylesheet">
 {% block title %}login page{% end %}
 {% block content %}
-    <div>
-        <div>
-            <form action="/login" method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    Username
-                    <input autofocus="" class="form-control" id="id_username" maxlength="254" name="username" type="text" required="">
-                </div>
-                <div class="from-group">
-                    Password
-                    <input class="form-control" id="id_password" name="password" type="password" required="">
-                </div>
-                <button class="">Login</button>
-                <div>
-                    还没有账号，需要<a href="/register">注册</a>一个
-                </div>
-            </form>
+<div class="text-center">
+    <form class="form-signin" action="/login" method="post" enctype="multipart/form-data">
+        <!--<img class="mb-4" src="http://www.w3.org/2000/svg" alt="" width="72" height="72">-->
+        <h1 class="h3 mb-3 font-weight-normal">登陆页面</h1><br>
+        <label for="id_username" class="sr-only">用户名</label>
+        <input type="text" id="id_username" name="username" class="form-control" placeholder="用户名">
+        <label for="id_password" class="sr-only">密码</label>
+        <input type="password" id="id_password" name="password" class="form-control" placeholder="密码">
+        <div class="checkbox mb-3">
+            <label>
+              <input type="checkbox" value="remember-me"> Remember me
+            </label>
         </div>
-    </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        <br>
+        <div>
+            还没有账号，需要<a href="/register">注册</a>一个
+        </div>
+    </form>
+</div>
 {% end %}

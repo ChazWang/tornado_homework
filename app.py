@@ -1,5 +1,3 @@
-import os
-
 import tornado.web
 import tornado.httpserver
 import tornado.ioloop
