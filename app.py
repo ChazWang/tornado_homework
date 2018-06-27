@@ -4,7 +4,7 @@ import tornado.ioloop
 import tornado.options
 from tornado.options import options, define
 
-from handlers import main, auth
+from handlers import main, auth, chat
 define('port', default=8000, help='run port', type=int)
 
 class Application(tornado.web.Application):
@@ -17,6 +17,9 @@ class Application(tornado.web.Application):
             ('/login', auth.LoginHandler),
             ('/logout', auth.LogOutHandler),
             ('/register', auth.RegisterHandler),
+            ('/room', chat.RoomHandler),
+            ('/ws', chat.ChatSocketHandler),
+            ('/profile', main.LikeHandler),
         ]
         settings = dict(
             template_path='templates',

@@ -9,6 +9,7 @@
     <!--<link rel="stylesheet" href="{{ static_url('css/bootstrap.css') }}">-->
     <link rel="stylesheet" href="{{ static_url('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.css">
+    <link rel="stylesheet" href="{{ static_url('font-awesome-4.7.0/css/font-awesome.min.css') }}">
 
     <title>{% block title %}Tornado Title{% end %}</title>
 </head>
@@ -36,7 +37,7 @@
           其它
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">转发</a>
+          <a class="dropdown-item" href="/profile">个人中心</a>
           <a class="dropdown-item" href="#">收藏</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">帮助</a>
@@ -58,5 +59,6 @@
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/popper.js/1.14.3/esm/popper.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+{% block extra_scripts %}{% end %}
 </body>
 </html>

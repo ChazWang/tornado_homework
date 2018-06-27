@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}profile page{% end %}
+{% block content %}
+    <div class="row">
+        <div class="card col-12">
+            <div class="card-header"><h3>用户上传</h3></div>
+        {% for p in user.posts %}
+            <a href="/post/{{ p.id }}" target="_blank">
+                <img src="{{ static_url(p.thumbs_url) }}" class="img-thumbnail">
+            </a>
+        {% end %}
+        </div>
+        <div class="card col-12">
+            <div class="card-header"><h3>用户喜欢</h3></div>
+        {% for p in like_posts %}
+            <a href="/post/{{ p.id }}" target="_blank">
+                <img src="{{ static_url(p.thumbs_url) }}" class="img-thumbnail">
+            </a>
+        {% end %}
+        </div>
+    </div>
+{% end %}

@@ -2,7 +2,7 @@
 {% block title %}upload page{% end %}
 {% block content %}
     <form action="/upload" enctype="multipart/form-data" method="post">
-        <input type="file" name="newimg">
+        <input  class="btn btn-outline-secondary" type="file" name="newimg">
         <input class="btn btn-info my-2 my-lg-0" type="submit" value="上传">
     </form>
 {% end %}

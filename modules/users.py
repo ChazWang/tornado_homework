@@ -62,6 +62,7 @@ class Post(Base):
         post = Post(images_url=images_url, thumbs_url=thumbs_url, user=user)
         session.add(post)
         session.commit()
+        return post
     @classmethod
     def get_url(cls, username):
         user = session.query(User).filter_by(name=username).first()
@@ -69,11 +70,18 @@ class Post(Base):
         return posts
     @classmethod
     def get_id(cls, id):
-        return session.query(Post).filter_by(id=id)
+        return session.query(Post).filter_by(id=id).first()
 
     @classmethod
     def get_all(cls):
         return session.query(Post).order_by(Post.create_time.desc()).all()
+
+class Like(Base):
+    __tablename__ = 'likes'
+    user_id = Column(Integer, ForeignKey('users.id'), nullable=False, primary_key=True)
+    post_id = Column(Integer, ForeignKey('posts.id'), nullable=False, primary_key=True)
+    create_time = Column(DateTime, default=datetime.now)
+
 if __name__ == '__main__':
     Base.metadata.create_all()
 

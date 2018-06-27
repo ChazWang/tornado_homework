@@ -2,18 +2,20 @@ import tornado.web
 import os
 from pycket.session import SessionMixin
 
-from utils.account import uploads, get_post_url, get_post_id, get_post_all
+from utils.account import uploads, get_post_url, get_post_id, get_post_all, get_like_posts, get_user, get_like_users
 from utils.photo import ImageSave
 
 class AuthBaseHandler(tornado.web.RequestHandler, SessionMixin):
     def get_current_user(self):
         return self.session.get('tornado_user_info')
 
-class PostHandler(tornado.web.RequestHandler):
+class PostHandler(AuthBaseHandler):
     '''单个图片显示详情'''
+    @tornado.web.authenticated
     def get(self, post_id):
         posts = get_post_id(post_id)
-        self.render('post.html', posts=posts)
+        users = get_like_users(posts)
+        self.render('post.html', posts=posts, users=users)
 
 class IndexHandler(AuthBaseHandler):
     '''图片分享首页'''
@@ -27,6 +29,14 @@ class ExploreHandler(AuthBaseHandler):
     def get(self, *args, **kwargs):
         posts = get_post_all()
         self.render('explore.html', posts=posts)
+
+class LikeHandler(AuthBaseHandler):
+    @tornado.web.authenticated
+    def get(self):
+        user = get_user(self.current_user)
+        like_posts = get_like_posts(user)
+        self.render('profile.html', user=user, like_posts=like_posts)
+
 class UploadHandler(AuthBaseHandler):
     # 接收图片上传文件
     @tornado.web.authenticated
